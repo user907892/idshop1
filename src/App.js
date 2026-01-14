@@ -8,9 +8,9 @@ const FEATURES = [
       "High-converting pages built to get phone calls, estimate requests, and booked appointments.",
   },
   {
-    title: "Fast launch with a flat fee",
+    title: "Fast launch with a low setup fee",
     description:
-      "One straightforward startup price for strategy, copy, design, and development. Go live fast.",
+      "A smaller upfront investment gets you live fast, then we scale results with a premium monthly plan.",
   },
   {
     title: "Appointment & quote capture",
@@ -29,7 +29,7 @@ const PROCESS = [
     step: "01",
     title: "Contractor strategy",
     description:
-      "We map your services, service area, and ideal homeowner so your site speaks their language.",
+      "We map your services (roofing, flooring, HVAC, concrete, remodeling) and ideal homeowner so your site speaks their language.",
   },
   {
     step: "02",
@@ -68,7 +68,7 @@ const TESTIMONIALS = [
 
 const FAQS = [
   {
-    question: "What does the flat startup fee include?",
+    question: "What does the low startup fee include?",
     answer:
       "Strategy, copywriting, design, development, launch setup, and a lead capture system built for contractors.",
   },
@@ -105,7 +105,7 @@ export default function App() {
             <h1>Build a killer site that keeps your crews booked.</h1>
             <p className="hero-subtitle">
               We build contractor websites that turn homeowners into calls, quotes, and appointments. Pay
-              a simple flat setup fee, then a low monthly plan to keep leads flowing.
+              a low setup fee, then a premium monthly plan that keeps leads flowing.
             </p>
             <div className="hero-actions">
               <button className="button button-primary">Get my website</button>
@@ -142,11 +142,11 @@ export default function App() {
             <div className="hero-card-footer">
               <div>
                 <p className="label">Monthly plan</p>
-                <p className="price">$299/mo</p>
+                <p className="price">$499/mo</p>
               </div>
               <div>
-                <p className="label">Startup fee</p>
-                <p className="price">$1,200</p>
+                <p className="label">Setup fee</p>
+                <p className="price">$499</p>
               </div>
             </div>
           </div>
@@ -156,13 +156,34 @@ export default function App() {
       <section className="section" id="features">
         <div className="section-heading">
           <h2>Everything contractors need to win more local jobs</h2>
-          <p>Built for roofers, remodelers, HVAC, painters, landscapers, concrete, and every trade.</p>
+          <p>
+            Built for roofers, floor installers, painters, landscapers, HVAC, plumbers, concrete crews,
+            siding teams, and remodelers who want more booked jobs.
+          </p>
         </div>
         <div className="card-grid">
           {FEATURES.map((feature) => (
             <article className="card" key={feature.title}>
               <h3>{feature.title}</h3>
               <p>{feature.description}</p>
+            </article>
+          ))}
+        </div>
+        <div className="card-grid">
+          {[
+            "Roofing, siding, gutters",
+            "Flooring & tile installs",
+            "Concrete, masonry, patios",
+            "HVAC & electrical service",
+            "Remodeling & additions",
+            "Landscaping & hardscape",
+          ].map((trade) => (
+            <article className="card" key={trade}>
+              <h3>{trade}</h3>
+              <p>
+                Service pages built for your specific jobs, so homeowners know exactly what you do and how
+                to hire you.
+              </p>
             </article>
           ))}
         </div>
@@ -186,14 +207,14 @@ export default function App() {
 
       <section className="section" id="pricing">
         <div className="section-heading">
-          <h2>Simple pricing built around a flat fee + monthly care</h2>
-          <p>Start with a one-time build, then keep your site working with a predictable monthly plan.</p>
+          <h2>Pricing built for long-term monthly growth</h2>
+          <p>Keep the upfront fee low, then invest in a stronger monthly plan that drives steady leads.</p>
         </div>
         <div className="pricing">
           <div className="pricing-card">
-            <h3>Launch Build</h3>
-            <p className="price">$1,200</p>
-            <p className="caption">One-time flat fee</p>
+            <h3>Launch Setup</h3>
+            <p className="price">$499</p>
+            <p className="caption">Low upfront fee</p>
             <ul>
               <li>Custom design + copywriting</li>
               <li>Service pages tailored to your trade</li>
@@ -205,23 +226,23 @@ export default function App() {
           <div className="pricing-card featured">
             <div className="badge">Most popular</div>
             <h3>Growth Care</h3>
-            <p className="price">$299/mo</p>
-            <p className="caption">Monthly plan</p>
+            <p className="price">$499/mo</p>
+            <p className="caption">Premium monthly plan</p>
             <ul>
               <li>Hosting, security, and updates</li>
               <li>Monthly SEO checkups</li>
-              <li>2 content or design updates</li>
+              <li>4 content or design updates</li>
               <li>Lead + performance reporting</li>
             </ul>
             <button className="button button-dark">Start the plan</button>
           </div>
           <div className="pricing-card">
             <h3>Multi-Crew</h3>
-            <p className="price">$449/mo</p>
-            <p className="caption">For multi-location teams</p>
+            <p className="price">$749/mo</p>
+            <p className="caption">For multi-crew teams</p>
             <ul>
               <li>Everything in Growth Care</li>
-              <li>Priority support + 4 updates</li>
+              <li>Priority support + 6 updates</li>
               <li>Local service ads prep</li>
               <li>Review & reputation support</li>
             </ul>
