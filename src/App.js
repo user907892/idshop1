@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./style.css";
 
 const FEATURES = [
@@ -64,6 +64,50 @@ const TESTIMONIALS = [
     quote:
       "We book estimate requests daily and the online scheduler keeps our team organized.",
   },
+  {
+    name: "Iris B.",
+    role: "Flooring & Tile",
+    quote:
+      "The site feels high-end and the quote form is bringing in better jobs than we used to get.",
+  },
+];
+
+const DESIGN_SHOWCASE = [
+  {
+    title: "Atlas Roofing Co.",
+    trade: "Roofing & storm repair",
+    summary: "Bold hero messaging, rapid quote form, and insurance-ready proof points.",
+    image:
+      "https://images.unsplash.com/photo-1461151304267-38535e780c79?auto=format&fit=crop&w=1400&q=80",
+  },
+  {
+    title: "Northline Remodeling",
+    trade: "Remodeling & additions",
+    summary: "Before/after galleries, financing CTAs, and project timelines that sell.",
+    image:
+      "https://images.unsplash.com/photo-1501183638710-841dd1904471?auto=format&fit=crop&w=1400&q=80",
+  },
+  {
+    title: "Blue Ridge Plumbing",
+    trade: "Plumbing & service pros",
+    summary: "Emergency call buttons, same-day booking, and local service area map.",
+    image:
+      "https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=1400&q=80",
+  },
+  {
+    title: "Summit Concrete",
+    trade: "Concrete & masonry",
+    summary: "Project highlights, social proof, and lead capture tuned for high-ticket bids.",
+    image:
+      "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1400&q=80",
+  },
+  {
+    title: "Evergreen Exteriors",
+    trade: "Siding & gutters",
+    summary: "Clean service navigation, warranty badges, and review-driven trust signals.",
+    image:
+      "https://images.unsplash.com/photo-1502005097973-6a7082348e28?auto=format&fit=crop&w=1400&q=80",
+  },
 ];
 
 const FAQS = [
@@ -85,6 +129,18 @@ const FAQS = [
 ];
 
 export default function App() {
+  const [designIndex, setDesignIndex] = useState(0);
+
+  const currentDesign = DESIGN_SHOWCASE[designIndex];
+
+  const handlePrev = () => {
+    setDesignIndex((prev) => (prev - 1 + DESIGN_SHOWCASE.length) % DESIGN_SHOWCASE.length);
+  };
+
+  const handleNext = () => {
+    setDesignIndex((prev) => (prev + 1) % DESIGN_SHOWCASE.length);
+  };
+
   return (
     <div className="app">
       <header className="hero" id="top">
@@ -191,40 +247,37 @@ export default function App() {
 
       <section className="section showcase">
         <div className="section-heading">
-          <h2>Recent contractor work highlights</h2>
-          <p>High-impact visuals and copy help homeowners trust you before they ever pick up the phone.</p>
+          <h2>Design showcase</h2>
+          <p>Use the arrows to preview five contractor website designs we’ve built.</p>
         </div>
-        <div className="showcase-grid">
-          {[
-            {
-              title: "Roofing & storm repair",
-              description: "Insurance-friendly pages and fast quote capture for urgent jobs.",
-              image:
-                "https://images.unsplash.com/photo-1461151304267-38535e780c79?auto=format&fit=crop&w=1200&q=80",
-            },
-            {
-              title: "Remodeling & additions",
-              description: "Before/after galleries and financing CTAs that boost high-ticket leads.",
-              image:
-                "https://images.unsplash.com/photo-1501183638710-841dd1904471?auto=format&fit=crop&w=1200&q=80",
-            },
-            {
-              title: "Plumbing & service pros",
-              description: "Same-day booking widgets and mobile-first layouts for emergency calls.",
-              image:
-                "https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=1200&q=80",
-            },
-          ].map((item) => (
-            <article className="showcase-card" key={item.title}>
-              <div className="showcase-image">
-                <img src={item.image} alt={item.title} loading="lazy" />
-              </div>
-              <div className="showcase-content">
-                <h3>{item.title}</h3>
-                <p>{item.description}</p>
-                <button className="button button-ghost">View layout</button>
-              </div>
-            </article>
+        <div className="showcase-slider">
+          <button className="slider-arrow" type="button" onClick={handlePrev} aria-label="Previous design">
+            ‹
+          </button>
+          <article className="showcase-card">
+            <div className="showcase-image">
+              <img src={currentDesign.image} alt={currentDesign.title} loading="lazy" />
+            </div>
+            <div className="showcase-content">
+              <p className="showcase-label">{currentDesign.trade}</p>
+              <h3>{currentDesign.title}</h3>
+              <p>{currentDesign.summary}</p>
+              <button className="button button-ghost">View layout</button>
+            </div>
+          </article>
+          <button className="slider-arrow" type="button" onClick={handleNext} aria-label="Next design">
+            ›
+          </button>
+        </div>
+        <div className="showcase-dots">
+          {DESIGN_SHOWCASE.map((item, index) => (
+            <button
+              key={item.title}
+              type="button"
+              className={`dot-indicator ${index === designIndex ? "active" : ""}`}
+              onClick={() => setDesignIndex(index)}
+              aria-label={`View ${item.title}`}
+            />
           ))}
         </div>
       </section>
@@ -311,6 +364,7 @@ export default function App() {
         <div className="testimonial-grid">
           {TESTIMONIALS.map((testimonial) => (
             <div className="testimonial-card" key={testimonial.name}>
+              <p className="review-stars">★★★★★</p>
               <p className="quote">“{testimonial.quote}”</p>
               <p className="author">{testimonial.name}</p>
               <span>{testimonial.role}</span>
